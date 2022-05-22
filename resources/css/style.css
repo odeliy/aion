@@ -1,5 +1,6 @@
 :root {
   --white: #e1dccd;
+  --black: #212529;
   --header-height: 64px;
 }
 
@@ -12,8 +13,8 @@ body {
   box-sizing: border-box;
   font-family: "Raleway", sans-serif;
   background-color: var(--white);
-  color: #212529;
-  padding-bottom: 20em;
+  color: var(--black);
+  padding-bottom: 128px;
 }
 
 p {
@@ -57,6 +58,18 @@ img {
   padding-inline: 8em;
 }
 
+@media (max-width: 850px) {
+  .contain {
+    padding-inline: 4em;
+  }
+}
+
+@media (max-width: 500px) {
+  .contain {
+    padding-inline: 2em;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -74,6 +87,7 @@ img {
   transition: all 200ms ease-out;
 }
 
+/* javascript controlled */
 .headerFrame {
   background-color: #272726;
   height: 0; /* collapse to min */
@@ -109,6 +123,43 @@ img {
   font-size: 1.5rem;
 }
 
+/* mobile ******************/
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 580px) {
+  .header-frame {
+    position: relative;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* overwrite .nav */
+  .mobile-menu {
+    min-height: 200px;
+    width: 100%;
+    padding-top: 32px;
+    line-height: 2em;
+    display: block;
+    position: absolute;
+    text-align: center;
+    letter-spacing: 1px;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50.25%);
+    color: var(--black);
+    background-color: var(--white);
+    box-shadow: 0 2px 3px #e1dccd;
+  }
+}
+
 /***************************/
 /* hero ********************/
 /***************************/
@@ -132,16 +183,34 @@ img {
   align-self: flex-end;
 }
 
+@media (max-width: 850px) {
+  .hero__body {
+    width: 75%;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero__body {
+    width: 100%;
+  }
+}
+
 .hero__title {
   margin-bottom: 16px;
   font-size: 4.75rem;
   line-height: 1.2;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1027px) {
   .hero__title {
     font-size: 3.3rem;
     line-height: 1.25;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero__title {
+    font-size: 2.5rem;
   }
 }
 
@@ -230,24 +299,153 @@ img {
   background-color: #ff9b01;
 }
 
+/* CONTENT AFTER ART START */
 .foundation__main {
-  padding: 4em 0;
+  padding-top: 8em;
+  padding-bottom: 8em;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
-/* INTRO */
-.foundation__intro {
+@media (max-width: 1200px) {
+  .foundation__main {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* INTRO & DESC */
+.foundation__intro-section {
+  width: 32%;
+}
+
+.foundation__intro-img {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 1200px) {
+  .foundation__intro-section {
+    width: 100%;
+    margin-bottom: 64px;
+  }
+
+  .foundation__intro-img {
+    max-width: 300px;
+  }
+}
+
+/* PAST REPORT SECTION */
+.foundation__past-reports-section {
   width: 42%;
 }
 
-/* REPORT */
-.foundation__report {
-  width: 50%;
+@media (max-width: 1200px) {
+  .foundation__past-reports-section {
+    width: 100%;
+  }
 }
 
-.foundation__quarters {
+.foundation__quarters-header {
+  padding-bottom: 1em;
+  margin-bottom: 32px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.foundation__quarter {
+  padding: 4px 12.5px;
+  border: 1px solid black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 527px) {
+  .foundation__quarter {
+    font-size: 0.8rem;
+    padding: 2px 6.25px;
+  }
+
+  .foundation__quarters-title {
+    font-size: 1rem;
+  }
+}
+
+.foundation__quarter:hover,
+.foundation__quarter:focus {
+  color: var(--white);
+  background-color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.foundation__quarter--current {
+  border: 1px solid var(--white);
+  background-color: var(--white);
+}
+
+.foundation__report-title {
+  margin-bottom: 32px;
+  font-size: 2rem;
+}
+
+.foundation__download-report {
+  margin-bottom: 32px;
+}
+
+.foundation__downloads {
+  display: flex;
+}
+
+/* flex gap is better but safari doesn't support yet */
+.foundation__download + .foundation__download {
+  margin-left: 32px;
+}
+
+@media (max-width: 420px) {
+  .foundation__downloads {
+    flex-direction: column;
+  }
+
+  .foundation__download + .foundation__download {
+    margin-left: unset;
+    margin-top: 32px;
+  }
+}
+
+.foundation__download {
+  padding: 1em 0.75em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffb901;
+  background-color: var(--black);
+  border-top-right-radius: 15px;
+}
+
+.foundation__download:hover,
+.foundation__download:focus {
+  color: var(--black);
+  background-color: var(--white);
+}
+
+/***************************/
+/* footer ******************/
+/***************************/
+.footer {
+  margin-top: 128px;
+  padding-top: 16px;
+  text-align: right;
+  border-top: 2px solid hsla(210, 11%, 15%, 0.24);
+}
+
+.footer__info {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* delete me */
+@media (max-width: 850px) {
+}
+
+@media (max-width: 500px) {
 }
